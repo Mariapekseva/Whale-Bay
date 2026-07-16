@@ -1,0 +1,468 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #eef2f7;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+}
+
+/* главный контейнер приложения */
+.app-container {
+  display: flex;
+  gap: 16px;
+  height: 100vh;
+  padding: 16px;
+  background: #eef2f7;
+}
+
+/* левая панель со статистикой */
+.left-panel {
+  width: 280px;
+  min-width: 240px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* заголовок панели */
+.panel-title {
+  padding: 14px 18px 10px;
+  margin: 0;
+  font-size: 18px;
+  color: #1a237e;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* контейнер с кнопками вкладок */
+.tab-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 2px;
+}
+
+/* кнопка вкладки */
+.tab-btn {
+  flex: 1 0 auto;
+  padding: 8px 6px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 500;
+  color: #666;
+  transition: all 0.2s;
+  min-width: 45px;
+  white-space: nowrap;
+}
+
+/* активная вкладка */
+.tab-btn.active {
+  background: #e8edf5;
+  border-bottom-color: #1a237e;
+  font-weight: 600;
+  color: #1a237e;
+}
+
+/* содержимое вкладок */
+.tab-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 14px;
+}
+
+/* информационная строка над списком */
+.tab-info {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* элемент списка китов */
+.whale-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  margin-bottom: 3px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s;
+}
+
+/* ховер на элементе кита */
+.whale-item:hover {
+  border-color: #ddd;
+  background: #f7f9fc;
+}
+
+/* кит в опасности */
+.whale-item.danger {
+  background: #ffebee;
+  border-color: #ffcdd2;
+}
+
+/* спасённый кит */
+.whale-item.saved {
+  background: #e8f5e9;
+  border-color: #c8e6c9;
+}
+
+/* эмодзи кита */
+.whale-emoji {
+  font-size: 18px;
+}
+
+/* контейнер с информацией о ките */
+.whale-info {
+  flex: 1;
+}
+
+/* имя кита */
+.whale-name {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* статус кита */
+.whale-status {
+  font-size: 11px;
+  color: #888;
+}
+
+/* элемент списка спасателей */
+.rescuer-item {
+  padding: 6px 10px;
+  margin-bottom: 3px;
+  border-radius: 6px;
+  background: #f8f9fa;
+}
+
+/* имя спасателя */
+.rescuer-name {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* статус спасателя */
+.rescuer-status {
+  font-size: 11px;
+  color: #888;
+  margin-top: 1px;
+}
+
+/* элемент списка событий */
+.event-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 4px 0;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 12px;
+}
+
+/* иконка события */
+.event-icon {
+  font-size: 14px;
+}
+
+/* текст события */
+.event-text {
+  flex: 1;
+}
+
+/* время события */
+.event-time {
+  font-size: 9px;
+  color: #aaa;
+  white-space: nowrap;
+}
+
+/* сообщение при пустом списке */
+.empty-msg {
+  color: #999;
+  text-align: center;
+  padding: 16px 0;
+  font-size: 13px;
+}
+
+/* статистика внизу левой панели */
+.bottom-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 8px;
+  padding: 10px 14px;
+  border-top: 1px solid #f0f0f0;
+  font-size: 12px;
+  color: #444;
+  background: #f8f9fa;
+}
+
+/* центральная панель с картой */
+.center-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* канвас с картой */
+.center-panel canvas {
+  flex: 1;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  min-height: 400px;
+}
+
+/* правая панель с управлением */
+.right-panel {
+  width: 260px;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* панель управления */
+.control-panel {
+  background: white;
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* секция в панели управления */
+.control-section {
+  margin-top: 8px;
+}
+
+/* подпись к элементу управления */
+.control-label {
+  font-weight: bold;
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+/* строка переключателя события */
+.event-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+  font-size: 13px;
+}
+
+/* строка параметра среды */
+.env-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+  font-size: 13px;
+}
+
+/* ползунок в строке среды */
+.env-row input[type="range"] {
+  flex: 1;
+}
+
+/* маленький переключатель */
+.switch.small {
+  width: 32px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* бегунок маленького переключателя */
+.switch.small .slider:before {
+  height: 12px;
+  width: 12px;
+  left: 3px;
+  bottom: 3px;
+}
+
+/* смещение бегунка при включении */
+.switch.small input:checked + .slider:before {
+  transform: translateX(14px);
+}
+
+/* общий стиль панели */
+.panel {
+  background: white;
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* заголовок панели */
+.panel-title {
+  padding: 0 0 8px 0;
+  margin: 0;
+  font-size: 15px;
+  color: #1a237e;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* фон затемнения для модальных окон */
+.help-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* содержимое модального окна */
+.help-content {
+  background: white;
+  padding: 28px 32px;
+  border-radius: 16px;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+/* заголовок модального окна */
+.help-content h2 {
+  margin: 0 0 12px 0;
+  color: #1a237e;
+}
+
+/* параграф в модальном окне */
+.help-content p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+/* список в модальном окне */
+.help-content ul {
+  margin: 6px 0;
+  padding-left: 20px;
+  font-size: 13px;
+  color: #444;
+}
+
+/* пункт списка */
+.help-content ul li {
+  margin: 4px 0;
+}
+
+/* кнопка в модальном окне */
+.help-content button {
+  margin-top: 16px;
+  padding: 8px 24px;
+  background: #1a237e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* ховер на кнопке модального окна */
+.help-content button:hover {
+  background: #0d1445;
+}
+
+/* контейнер переключателя */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+/* скрываем чекбокс */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* ползунок переключателя */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .3s;
+  border-radius: 22px;
+}
+
+/* кружок внутри ползунка */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+
+/* включенное состояние переключателя */
+.switch input:checked + .slider {
+  background-color: #4CAF50;
+}
+
+/* смещение кружка при включении */
+.switch input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+/* стилизация скролла */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* трек скролла */
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 3px;
+}
+
+/* ползунок скролла */
+::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border-radius: 3px;
+}
+
+/* ховер на ползунке скролла */
+::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}

@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "name": "Китовый залив",
+    "gridWidth": 20,
+    "gridHeight": 20
+  },
+  "whales": {
+    "count": 10,
+    "groups": {
+      "group1": { "name": "ГРУППА 1", "count": 4, "color": "#4FC3F7" },
+      "group2": { "name": "ГРУППА 2", "count": 4, "color": "#FF8A65" },
+      "loners": { "name": "ОДИНОЧКА", "count": 2, "color": "#A5D6A7" }
+    },
+    "maxWhales": 20,
+    "birthInterval": {
+      "ideal": 15,
+      "bad": 50
+    },
+    "strandInterval": 60
+  },
+  "rescuers": {
+    "count": 3,
+    "names": ["Егор", "Лео", "Анна"],
+    "startX": 4,
+    "startY": 18,
+    "boatX": 9,
+    "boatY": 13.5
+  },
+  "volunteers": {
+    "count": 2,
+    "names": ["Женя", "Ксения"],
+    "startX": 6,
+    "startY": 17
+  },
+  "events": {
+    "list": [
+      { "id": "shallow", "name": "Мелководье", "damage": 8 },
+      { "id": "reef", "name": "Рифы", "damage": 10 },
+      { "id": "hungry", "name": "Голод", "damage": 6 },
+      { "id": "trapped", "name": "Ловушка", "damage": 15 },
+      { "id": "poison", "name": "Химикаты", "damage": 25 }
+    ],
+    "probability": 0.004,
+    "interval": 15
+  },
+  "environment": {
+    "food": 80,
+    "clean": true,
+    "warm": true
+  }
+}
